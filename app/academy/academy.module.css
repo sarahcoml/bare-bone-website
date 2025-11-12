@@ -1,0 +1,941 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap');
+
+/* filepath: /Users/sarahcomlan/Desktop/wym-nextjs-site/app/academy/academy.module.css */
+
+.academyMain {
+  min-height: 100vh;
+  background: #0033f1;
+  color: #fff;
+  font-family: Inter, Arial, sans-serif;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.topSection {
+  padding: 40px 0 0 0;
+  text-align: center;
+  position: relative;
+}
+
+/* numbers / info cards */
+.numbersCard {
+  background: #fff;
+  color: #0033f1;
+  border-radius: 28px; /* rounder */
+  padding: 22px 10px;
+  font-weight: 700;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* info cards */
+.infoCard {
+  background: #f6f8fa;
+  border-radius: 32px; /* rounder */
+  box-shadow: 0 2px 16px rgba(2, 6, 23, 0.10);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 220px;
+  max-width: 260px;
+  text-align: center;
+  color: #0b1020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  will-change: opacity, transform;
+}
+
+/* get started badge border thicker */
+.getStartedBadge {
+  position: absolute;
+  right: 5%;
+  top: 60%;
+  background: #f6f38e;
+  color: #0033f1;
+  font-weight: 700;
+  border-radius: 56px;
+  padding: 0.7rem 1.7rem;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  transform: rotate(-12deg);
+  border: 5px solid #fff; /* thicker border */
+  cursor: pointer;
+  transition: background 0.18s;
+  z-index: 2;
+}
+
+/* Larger on very wide screens */
+@media (min-width: 1800px) {
+  .mainTitle { font-size: 16rem; }
+}
+
+/* Slightly smaller large-desktop fallback */
+@media (min-width: 1400px) and (max-width: 1799px) {
+  .mainTitle { font-size: 14rem; }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .mainTitle { font-size: 5rem; }
+  .contentLayer { padding: 20px; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .mainTitle {
+    font-size: 3.2rem;
+  }
+  .decorImg1, .decorImg2 { display: none; }
+  .decorImg3 { top: 110px; width: 84px; height: 84px; }
+}
+
+.monospace {
+  font-family: monospace;
+  font-weight: 900;
+}
+
+.badge {
+  display: inline-block;
+  background: #fff;
+  color: #0033f1;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 16px;
+  padding: 2px 18px;
+  margin: 0 0 18px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.topDesc {
+  /* increased size for better legibility, centered and white */
+  font-size: 1.125rem; /* ~18px for mobile */
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 1rem auto 0;
+  color: #ffffff; /* ensure text is white */
+  text-align: center; /* center the paragraph text */
+}
+
+/* larger on wider screens */
+@media (min-width: 768px) {
+  .topDesc {
+    font-size: 1.25rem; /* ~20px for tablet+ */
+  }
+}
+@media (min-width: 1200px) {
+  .topDesc {
+    font-size: 1.375rem; /* ~22px for desktop */
+  }
+}
+
+.highlight {
+  color: var(--wym-yellow, #f6f38e);
+  font-weight: 700;
+}
+
+.numbersSection {
+  margin: 48px auto 0 auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+.numbersTitle {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin: 0 0 24px 0;
+  letter-spacing: 0.01em;
+  color: #fff;
+}
+
+.numbersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 18px;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+.focusSection {
+  margin: 48px auto 0 auto;
+  text-align: center;
+}
+
+.focusTitle {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin: 0 0 12px 0;
+  letter-spacing: 0.01em;
+  color: #f6f38e;
+}
+
+.focusDesc {
+  color: #e6f0fa;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Existing styles below this line */
+
+.heroSection {
+  position: relative;
+  background: #0033f1;
+  padding: 4rem 0 7rem 0;
+  overflow: hidden;
+}
+
+.heroBg {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.heroTitle {
+  font-size: 3.2rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.hash {
+  color: #f6f38e;
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+.heroSub {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #f6f38e;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.08em;
+}
+
+.floatingCards {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.floatingCard {
+  position: absolute;
+  background: rgba(255,255,255,0.13);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 0.7rem 1rem 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: auto;
+  animation: float 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(-6deg);}
+  100% { transform: translateY(18px) rotate(6deg);}
+}
+
+.cardLabel {
+  font-size: 0.95rem;
+  color: #fff;
+  background: rgba(0,0,0,0.22);
+  border-radius: 8px;
+  padding: 0.2rem 0.7rem;
+  margin-top: 0.2rem;
+}
+
+.getStartedBadge {
+  position: absolute;
+  right: 5%;
+  top: 60%;
+  background: #f6f38e;
+  color: #0033f1;
+  font-weight: 700;
+  border-radius: 56px;
+  padding: 0.7rem 1.7rem;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  transform: rotate(-12deg);
+  border: 5px solid #fff; /* thicker border */
+  cursor: pointer;
+  transition: background 0.18s;
+  z-index: 2;
+}
+.getStartedBadge:hover {
+  background: #fff;
+  color: #0033f1;
+}
+
+.arrow {
+  font-size: 1.3em;
+  margin-left: 0.5em;
+}
+
+.infoSection {
+  display: flex;
+  justify-content: center;
+  gap: 2.2rem;
+  background: #fff;
+  padding: 2.5rem 1rem 3.5rem 1rem;
+  border-radius: 36px 36px 36px 36px; /* Fully rounded corners */
+  margin-top: -3.5rem;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+  overflow: hidden;
+}
+
+.infoCard {
+  background: #f6f8fa;
+  border-radius: 32px; /* rounder */
+  box-shadow: 0 2px 16px rgba(2, 6, 23, 0.10);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 220px;
+  max-width: 260px;
+  text-align: center;
+  color: #0b1020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+  will-change: opacity, transform;
+}
+.infoCard.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.infoCard h3 {
+  font-size: 1.08rem;
+  font-weight: 800;
+  margin-bottom: 0.7rem;
+  color: #0033f1;
+  letter-spacing: 0.01em;
+}
+
+.infoCard p {
+  font-size: 1rem;
+  color: #475569;
+  margin-bottom: 1.2rem;
+}
+
+.infoBadge {
+  background: #0033f1;
+  color: #fff;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1.1rem;
+  margin-top: auto;
+  display: inline-block;
+}
+.infoBadge span {
+  font-size: 0.95em;
+  color: #f6f38e;
+  margin-left: 0.3em;
+}
+
+.infoBadgeHighlight {
+  background: #f6f38e;
+  color: #0033f1;
+  font-weight: 800;
+  border-radius: 12px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1.25rem;
+  margin-top: auto;
+  display: inline-block;
+  box-shadow: 0 2px 10px rgba(2, 6, 23, 0.10);
+}
+
+/* Impact Section */
+.impactSection {
+  background: #f6f8fa;
+  color: #0033f1;
+  padding: 3.5rem 1.5rem 3.5rem 1.5rem;
+  border-radius: 0 0 36px 36px;
+  margin-top: 0;
+  text-align: center;
+  box-shadow: 0 -2px 24px rgba(2,6,23,0.04);
+}
+
+.impactTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2.2rem;
+  color: #0033f1;
+  letter-spacing: -0.01em;
+}
+
+.impactGrid {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.2rem;
+}
+
+.impactItem {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 10px rgba(2, 6, 23, 0.06);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  min-width: 160px;
+  max-width: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.impactIcon {
+  font-size: 2.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.impactStat {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #0033f1;
+  margin-bottom: 0.2rem;
+}
+
+.impactLabel {
+  font-size: 1.05rem;
+  color: #475569;
+}
+
+.impactCTA {
+  margin-top: 1.5rem;
+}
+
+.impactLink {
+  display: inline-block;
+  font-weight: 700;
+  color: #fff;
+  background: #0033f1;
+  padding: 0.8rem 2rem;
+  border-radius: 32px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: background 0.18s, color 0.18s;
+  box-shadow: 0 2px 10px rgba(2, 6, 23, 0.06);
+}
+.impactLink:hover {
+  background: #f6f38e;
+  color: #0033f1;
+}
+
+/* bubble background layer - refined */
+.bubbleContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 0; /* behind content */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* keep actual page content above bubbles and add comfortable padding */
+.contentLayer {
+  position: relative;
+  z-index: 2;
+  padding: 28px 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* back button style */
+.backButton {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* ensure content sits above bubble layer for accessibility */
+.topSection, .numbersSection, .focusSection {
+  position: relative;
+  z-index: 3;
+}
+
+/* bubble tweaks */
+.bubble {
+  position: absolute;
+  bottom: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0.14) 40%, rgba(255,255,255,0.02));
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12), inset 0 2px 6px rgba(255,255,255,0.45);
+  opacity: 0.95;
+  animation-name: rise, sway;
+  animation-timing-function: linear, ease-in-out;
+  animation-duration: 4s, 3.8s;
+  animation-iteration-count: 1, infinite;
+  animation-fill-mode: forwards, both;
+  will-change: transform, opacity;
+}
+
+/* keep burst small and subtle */
+.burst {
+  position: absolute;
+  bottom: -20%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.98), rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.02));
+  box-shadow: 0 8px 26px rgba(255,255,255,0.16);
+  transform: translateY(-30vh);
+  opacity: 0.98;
+  animation: burstAnim 420ms ease-out forwards;
+}
+
+/* Testimonials */
+.testimonialsSection {
+  margin: 48px auto;
+  max-width: 1200px;
+  padding: 24px 20px;
+  color: #fff;
+}
+
+.testimonialsTitle {
+  font-size: 2.6rem;
+  margin: 0 0 18px 0;
+  font-weight: 900;
+  color: #fff;
+}
+
+.testimonialsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+.testimonialCard {
+  background: rgba(255,255,255,0.95);
+  color: #0033f1;
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.testimonialText {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.3;
+  margin: 0;
+  flex: 1;
+}
+
+.testimonialName {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: #0033f1;
+  margin-top: 6px;
+}
+
+/* CTA scalloped block — refined & taller */
+.ctaSection {
+  margin: 64px auto 96px;
+  position: relative;
+  background: linear-gradient(180deg, #ff6b57 0%, #ff5a4a 100%);
+  color: #fff;
+  border-radius: 80px;  /* more rounded */
+  max-width: 1200px;
+  overflow: hidden; /* changed from visible -> hide scallops */
+  padding: 56px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  box-shadow: 0 18px 40px rgba(255,74,58,0.12);
+}
+
+/* CTA inner remains, image wrapper removed */
+.ctaInner {
+  max-width: 820px;
+  padding-right: 8px;
+}
+
+.ctaTitle {
+  font-size: 2.6rem;
+  margin: 0 0 10px 0;
+  font-weight: 900;
+  line-height: 1.02;
+}
+
+.ctaSubtitle {
+  margin: 0 0 20px 0;
+  opacity: 0.95;
+  font-size: 1.05rem;
+}
+
+/* form layout - increase control height for visual weight */
+.ctaForm {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.ctaInput {
+  flex: 1 1 220px;
+  min-width: 160px;
+  padding: 16px 18px; /* taller inputs */
+  border-radius: 22px; /* rounder */
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.98);
+}
+
+/* button emphasized */
+.ctaButton {
+  background: #fff;
+  color: #ff4a3a;
+  border: none;
+  padding: 16px 22px;
+  border-radius: 22px; /* rounder */
+  font-weight: 900;
+  cursor: pointer;
+  min-width: 140px;
+  box-shadow: 0 8px 20px rgba(255,74,58,0.12);
+  transition: transform .12s ease;
+}
+.ctaButton:active { transform: translateY(1px) scale(0.998); }
+
+/* responsive adjustments */
+@media (max-width: 900px) {
+  .ctaSection {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 36px 22px 72px;
+    margin: 42px 18px 80px;
+  }
+  .ctaForm { width: 100%; gap: 10px; }
+  .ctaInput { flex: 1 1 100%; min-width: 0; }
+  .ctaTitle { font-size: 1.9rem; }
+  .ctaSubtitle { font-size: 0.98rem; margin-bottom: 14px; }
+}
+
+/* ensure scallop doesn't overlap too much on very small screens */
+@media (max-width: 420px) {
+  .ctaSection::after { height: 48px; bottom: -24px; background-size: 48px 48px; }
+  .ctaSection { padding: 28px 16px; border-radius: 36px; }
+  .ctaTitle { font-size: 1.7rem; }
+  .ctaButton { width: 100%; }
+}
+
+/* Footer: socials + contacts (centered, larger, white text/icons) */
+.footerContacts {
+  background: transparent; /* no background */
+  color: #ffffff; /* white text */
+  padding: 56px 20px; /* slightly bigger */
+  width: 100%;
+  box-shadow: none;
+  position: relative;
+}
+
+.footerInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  justify-content: center; /* center the two columns horizontally */
+  padding: 0 20px;
+}
+
+/* left and right columns - center their content */
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 0 0 auto;
+  align-items: center; /* center contents */
+  text-align: center;
+  min-width: 260px;
+}
+
+/* big titles - larger and white */
+.footerTitle {
+  font-weight: 900;
+  font-size: 2.4rem; /* bigger */
+  margin: 0;
+  color: #ffffff;
+}
+
+/* social icons in bordered circular outlines (white icons) */
+.socialsList {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* smaller but more visible social buttons */
+.socialLink {
+  display: inline-flex;
+  width: 52px;                /* smaller circle */
+  height: 52px;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  color: #ffffff;
+  text-decoration: none;
+  border: 3px solid rgba(255,255,255,0.28); /* stronger, visible border */
+  box-shadow: 0 8px 20px rgba(2,6,23,0.14);
+  transition: transform .14s ease, border-color .14s ease, background .14s ease;
+}
+
+/* make the SVG icons visually heavier/bolder */
+.socialLink svg {
+  width: 20px;
+  height: 20px;
+  fill: #ffffff !important;
+  stroke: #ffffff; /* apply stroke to elements that use strokes */
+  stroke-width: 1.4;
+  opacity: 1;
+  transform: scale(1.06); /* slightly larger inside the smaller circle */
+  filter: drop-shadow(0 1px 0 rgba(0,0,0,0.18)); /* subtle lift to increase perceived weight */
+  transition: transform .14s ease;
+}
+
+/* ensure common SVG primitives also get stronger stroke/fill */
+.socialLink svg path,
+.socialLink svg circle,
+.socialLink svg rect,
+.socialLink svg polygon {
+  stroke: #ffffff;
+  stroke-width: 1.4;
+  fill: #ffffff;
+}
+
+/* hover/focus */
+.socialLink:hover,
+.socialLink:focus {
+  transform: translateY(-6px) scale(1.04);
+  border-color: rgba(255,255,255,0.42);
+  background: rgba(255,255,255,0.09);
+  outline: none;
+}
+
+/* responsive: even smaller on narrow screens */
+@media (max-width: 820px) {
+  .socialLink {
+    width: 44px;
+    height: 44px;
+    border-width: 2.5px;
+  }
+  .socialLink svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.2;
+    transform: scale(1.04);
+  }
+}
+
+/* vertical dotted divider: lighter on page (still visible) */
+.footerDivider {
+  width: 6px; /* thicker */
+  height: 96px;
+  margin: 0 28px;
+  align-self: center;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0.75) 100%);
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+
+/* keep a visible, scaled-down divider on small screens instead of hiding it */
+@media (max-width: 820px) {
+  .footerDivider {
+    display: block;
+    width: 4px;
+    height: 72px;
+    margin: 12px 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.8));
+  }
+}
+
+/* contact column styling - white text */
+.contactList { display: flex; flex-direction: column; gap: 10px; align-items: center; }
+.contactHandle .contactLink { color: #ffffff; font-weight: 800; text-decoration: none; font-size: 1.125rem; }
+.contactInfo { color: rgba(255,255,255,0.92); font-size: 1rem; line-height: 1.5; max-width: 360px; }
+
+/* responsive: stack columns full width on small screens and keep centered */
+@media (max-width: 820px) {
+  .footerInner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .footerDivider { display: none; }
+  .socialsList { margin-bottom: 4px; }
+  .socialLink { width: 64px; height: 64px; }
+  .footerCol { min-width: auto; }
+}
+
+/* small centered area beneath footer columns for CTA button */
+.footerBottom {
+  display: flex;
+  justify-content: center;
+  padding: 20px 16px 8px;
+}
+
+/* prominent waitlist button */
+.waitlistBtn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 12px;
+  background: var(--wym-yellow, #f6f38e);
+  color: #0b1020;
+  font-weight: 800;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 8px 28px rgba(11,16,32,0.12);
+  transition: transform .14s ease, box-shadow .14s ease, filter .14s ease;
+  white-space: nowrap;
+}
+
+.waitlistBtn:hover,
+.waitlistBtn:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(11,16,32,0.16);
+  outline: none;
+}
+
+/* ensure it scales nicely on small screens */
+@media (max-width: 480px) {
+  .waitlistBtn {
+    padding: 10px 18px;
+    font-size: 0.95rem;
+  }
+}
+
+/* load Dynapuff from Google Fonts and apply to academy headings */
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&display=swap');
+
+.heroTitle,
+.mainTitle,
+.academyTitle {
+  font-family: 'Baloo 2', Inter, Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  text-transform: none; /* keep original casing unless you want uppercase */
+}
+
+/* Application / Partner form (center column, cream inputs, purple submit) */
+.applicationSection {
+  display: flex;
+  justify-content: center;
+  padding: 48px 20px;
+}
+
+.appInner {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.appTitle {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff; /* adjust if page background is light/dark */
+  margin: 0 0 8px 0;
+}
+
+/* form layout */
+.appForm {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+/* input styles matching screenshot: rounded cream fields */
+.appInput,
+.appTextarea {
+  width: 100%;
+  background: #fff6e8; /* cream */
+  color: #0b1020;
+  border: 0;
+  padding: 18px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  box-shadow: 0 6px 18px rgba(11,16,32,0.08) inset;
+  outline: none;
+  resize: vertical;
+}
+
+/* textarea slightly taller */
+.appTextarea {
+  min-height: 120px;
+  padding-top: 20px;
+}
+
+/* submit button: purple rounded pill like screenshot */
+.appSubmit {
+  margin-top: 8px;
+  width: 100%;
+  max-width: 420px;
+  padding: 16px 22px;
+  border-radius: 16px;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(90deg, #b37bff 0%, #d884ff 50%, #f0a6f8 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  box-shadow: 0 12px 30px rgba(176, 110, 255, 0.18);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.appSubmit:hover,
+.appSubmit:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(176, 110, 255, 0.22);
+  outline: none;
+}
+
+/* responsive adjustments */
+@media (max-width: 640px) {
+  .appInner { padding: 0 10px; }
+  .appTitle { font-size: 1.6rem; }
+  .appInput, .appTextarea { padding: 14px 16px; border-radius: 14px; }
+  .appSubmit { padding: 14px 18px; border-radius: 14px; font-size: 0.98rem; }
+}

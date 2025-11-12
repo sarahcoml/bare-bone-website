@@ -1,0 +1,679 @@
+/* Minimal, mobile-first responsive About page styles - unified root (.aboutMain + .splitMain) */
+
+.aboutMain,
+.splitMain {
+  width: 100%;
+  min-height: 100vh;
+  padding: 1.25rem 16px 3rem;
+  box-sizing: border-box;
+  background: #fafafa;
+  color: #111;
+  font-family: Inter, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  display: block;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+/* Mission / intro area (centered) */
+.missionSection {
+  max-width: 1100px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  padding: 0 6px;
+}
+.missionTitle {
+  font-size: clamp(2rem, 7.2vw, 3.2rem); /* increased */
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+  color: #18191c;
+  letter-spacing: -0.02em;
+  line-height: 1.03;
+}
+.missionText {
+  font-size: clamp(1.05rem, 4.2vw, 1.35rem); /* increased */
+  color: #475063;
+  font-weight: 400;
+  line-height: 1.6; /* a bit more breathing room */
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 6px;
+}
+
+/* Cards area: responsive grid, centered cards */
+.cardsSection {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 6px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(0.9rem, 3vw, 1.75rem);
+  justify-items: center;
+  box-sizing: border-box;
+}
+
+/* Card wrapper and card basics: ensure center alignment and full responsiveness */
+.relativeCardWrap,
+.profileCard,
+.fullImageCard {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Card visual: responsive aspect-ratio, full width */
+.imgWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #e9ecef;
+  position: relative;
+  display: block;
+  max-width: 100%;
+}
+.heroImg,
+.fullCardImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+/* Card content area: compact, readable */
+.cardContent,
+.fullCardContent {
+  padding: 0.9rem 1rem;
+  box-sizing: border-box;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.headline {
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
+  font-weight: 700;
+  margin: 0;
+  color: #111;
+}
+.desc,
+.fullCardDesc {
+  font-size: clamp(0.9rem, 2.6vw, 1rem);
+  color: #444;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Make sure absolute-positioned images don't break layout when JS hasn't hydrated */
+.imgWrapper img,
+.imgWrapper :global(img) {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Restored card visuals & behaviors (mobile-first) --- */
+
+/* full image card: large rounded image with grayscale treatment */
+.fullImageCard {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  display: block;
+  width: 100%;
+  background: #000; /* fallback while image loads */
+  box-shadow: 0 18px 48px rgba(7,8,10,0.3);
+}
+
+/* image inside the card; keep cover, desaturate for the dramatic look */
+.fullCardImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: grayscale(100%) contrast(1.02) saturate(0.9);
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1), filter 420ms cubic-bezier(.2,.9,.2,1);
+  transform-origin: center;
+}
+
+/* hover with scale + color reveal on pointer devices */
+@media (hover: hover) and (pointer: fine) {
+  .fullImageCard:hover .fullCardImg {
+    transform: scale(1.03);
+    filter: grayscale(0%) contrast(1.02) saturate(1.06);
+  }
+}
+
+/* also restore color when the card receives keyboard focus for accessibility */
+.fullImageCard:focus-within .fullCardImg,
+.fullImageCard:focus .fullCardImg {
+  filter: grayscale(0%) contrast(1.02) saturate(1.06);
+  transform: scale(1.02);
+}
+
+/* bottom blur / gradient to ensure text legibility */
+.fullImageCard .bottomBlur {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 48%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(0deg, rgba(6,6,6,0.92) 0%, rgba(6,6,6,0.72) 35%, rgba(6,6,6,0.18) 100%);
+}
+
+/* content overlay: positioned above blur, constrained width so text doesn't stretch too wide */
+.fullCardContent {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 18px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: calc(100% - 28px); /* fill full card width with side insets */
+  max-width: none;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  padding: 6px 8px;
+  hyphens: auto;
+  word-break: break-word;
+}
+
+/* mobile: keep full-width insets but allow slightly different spacing */
+@media (max-width: 720px) {
+  .fullCardContent {
+    left: 12px;
+    right: 12px;
+    bottom: 14px;
+    width: calc(100% - 24px);
+    padding: 8px 10px;
+    max-width: none;
+  }
+
+  /* moved global mobile menu rules to app/globals.css */
+}
+
+/* desktop: still fill horizontally but allow the text to sit a little higher if needed */
+@media (min-width: 900px) {
+  .fullCardContent {
+    left: 24px;
+    right: 24px;
+    bottom: 28px;
+    width: calc(100% - 48px);
+    padding: 10px 12px;
+    max-width: none;
+  }
+}
+
+/* name / headline — larger, tighter, single visual block */
+.fullCardName {
+  margin: 0;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 6px 20px rgba(0,0,0,0.55);
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+/* descriptive paragraph — slightly bigger, more readable line-height */
+.fullCardDesc {
+  margin: 0;
+  color: rgba(255,255,255,0.95);
+  font-size: clamp(1rem, 3.6vw, 1.06rem);
+  line-height: 1.55;         /* more breathing room */
+  text-shadow: 0 4px 18px rgba(0,0,0,0.45);
+  opacity: 0.98;
+}
+
+/* social buttons (email / linkedin) — subtle frosted circular buttons */
+.fullCardSocials {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+  align-items: center;
+}
+.fullCardSocialBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.03);
+  transition: transform 140ms ease, background 140ms ease;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.fullCardSocialBtn:hover,
+.fullCardSocialBtn:focus {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.12);
+  outline: none;
+}
+
+/* static stickers: position preserved by inline style from JSX but style tightened */
+.staticSticker {
+  width: 56px;
+  height: 56px;
+  position: absolute;
+  pointer-events: none;
+  transition: transform .36s cubic-bezier(.2,.9,.2,1), opacity .36s;
+  z-index: 4;
+  will-change: transform, opacity;
+
+  /* nudge stickers slightly toward the card edge (negative margin pulls them outward) */
+  margin: -10px;
+  /* ensure any inline transform from JS is preserved while adding the nudge */
+  transform: translateZ(0);
+}
+
+/* Move stickers visually closer / overlapping the card edge */
+.staticSticker {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  pointer-events: none;
+  transition: transform .32s cubic-bezier(.2,.9,.2,1), opacity .28s;
+  z-index: 6;
+  will-change: transform, opacity;
+
+  /* stronger overlap: pull stickers inward toward the card edge */
+  /* negative margin pulls them outside; smaller (more negative) value increases overlap */
+  margin: -22px;
+  /* small inward nudge so stickers appear closer to the card border */
+  transform: translate(6px, 6px);
+}
+
+/* Slightly larger overlap on desktop */
+@media (min-width: 900px) {
+  .staticSticker {
+    margin: -28px;
+    transform: translate(8px, 8px);
+  }
+}
+
+/* corner-specific override (use data-corner="true" on the JSX element for stronger overlap) */
+.staticSticker[data-corner="true"] {
+  margin: -30px;
+  width: 56px;
+  height: 56px;
+  transform: translate(10px, 10px);
+}
+
+/* keep sticker-behind treatment */
+.staticSticker.stickerBehind {
+  filter: brightness(.9) blur(.6px) saturate(0.95);
+  opacity: 0.95;
+}
+
+/* popup / trail stickers (when they animate in) */
+.sticker {
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  position: fixed;
+  transform-origin: center;
+  animation: sticker-pop 1.2s forwards;
+  z-index: 9999;
+}
+
+/* sticker pop keyframes (keeps same behavior as before) */
+@keyframes sticker-pop {
+  0% { opacity: 0; transform: translateY(0) scale(.7) rotate(-10deg); }
+  10% { opacity: 1; transform: translateY(-8px) scale(1.1) rotate(6deg); }
+  80% { opacity: 1; transform: translateY(-6px) scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(-22px) scale(.7) rotate(8deg); }
+}
+
+/* responsive tweaks: on very small screens center the text block and allow wider overlay */
+@media (max-width: 420px) {
+  .fullCardContent {
+    left: 12px;
+    right: 12px;
+    bottom: 16px;
+    max-width: 94%;
+    text-align: left;
+  }
+  .fullCardName {
+    font-size: clamp(1.35rem, 8vw, 1.85rem);
+  }
+  .fullCardSocialBtn { width: 40px; height: 40px; border-radius: 10px; }
+}
+
+/* desktop: allow a little more breathing room for text */
+@media (min-width: 900px) {
+  .fullCardContent {
+    left: 28px;
+    right: auto;
+    bottom: 28px;
+    max-width: 56%;
+  }
+  .staticSticker { width: 64px; height: 64px; }
+}
+
+/* keep overlay and accessibility layering intact */
+.fullImageCard,
+.fullCardContent,
+.bottomBlur { -webkit-tap-highlight-color: transparent; }
+
+/* Mobile-first: stack single column, center content */
+@media (max-width: 720px) {
+  .cardsSection {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 0 8px;
+  }
+  .imgWrapper {
+    aspect-ratio: 16 / 9;
+    min-height: 180px;
+    border-radius: 10px;
+  }
+  .cardContent,
+  .fullCardContent {
+    padding: 0.9rem;
+  }
+  .missionSection {
+    padding: 0 8px;
+  }
+}
+
+/* Tablet and up: two-column layout and slightly larger cards */
+@media (min-width: 900px) {
+  .cardsSection {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .relativeCardWrap,
+  .profileCard,
+  .fullImageCard {
+    max-width: 640px;
+  }
+  .imgWrapper {
+    aspect-ratio: 4 / 3;
+    min-height: 260px;
+    border-radius: 14px;
+  }
+  .cardContent,
+  .fullCardContent {
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* Large screens: increase horizontal gutters */
+@media (min-width: 1200px) {
+  .aboutMain,
+  .splitMain {
+    padding-left: clamp(20px, 6vw, 120px);
+    padding-right: clamp(20px, 6vw, 120px);
+  }
+  .relativeCardWrap,
+  .profileCard,
+  .fullImageCard {
+    max-width: 820px;
+  }
+  .imgWrapper {
+    min-height: 340px;
+  }
+}
+
+/* Card-focused styles: make StickerCard look like a real, responsive portrait card */
+
+/* wrapper: center and constrain card */
+.relativeCardWrap {
+  width: 100%;
+  max-width: 360px; /* reduced from 420/520 */
+  margin: 0 auto;
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 25px; /* added top padding */
+}
+
+/* card surface: slightly lighter shadow and tighter radius */
+.fullImageCard {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 14px 40px rgba(7,8,10,0.30);
+  transition: transform 300ms cubic-bezier(.2,.9,.2,1), box-shadow 300ms;
+}
+
+/* portrait/aspect wrapper: taller relative to width => skinnier look */
+.imgWrapper {
+  width: 100%;
+  aspect-ratio: 2 / 3; /* narrower portrait (0.66) */
+  min-height: 360px;
+  background: #111;
+  position: relative;
+}
+
+/* image: keep existing filters/scale behavior */
+.fullCardImg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center; /* prefer the top of the image (shows face) instead of centering/cropping */
+  display: block;
+  filter: grayscale(100%) contrast(1.02) saturate(0.9);
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1), filter 420ms cubic-bezier(.2,.9,.2,1);
+  transform-origin: center;
+}
+
+/* restore full color on hover (pointer devices) */
+@media (hover: hover) and (pointer: fine) {
+  .fullImageCard:hover .fullCardImg {
+    transform: scale(1.03);
+    filter: grayscale(0%) contrast(1.02) saturate(1.06);
+  }
+}
+
+/* also restore color when the card receives keyboard focus for accessibility */
+.fullImageCard:focus-within .fullCardImg,
+.fullImageCard:focus .fullCardImg {
+  filter: grayscale(0%) contrast(1.02) saturate(1.06);
+  transform: scale(1.02);
+}
+
+/* content overlay: narrower text column so copy wraps sooner */
+.fullCardContent {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 18px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: calc(100% - 28px); /* fill full card width with side insets */
+  max-width: none;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  text-align: left;
+  padding: 6px 8px;
+  hyphens: auto;
+  word-break: break-word;
+}
+
+/* slightly smaller headline to fit new width */
+.fullCardName {
+  margin: 0;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 6px 20px rgba(0,0,0,0.55);
+  font-size: clamp(1.4rem, 6vw, 2.0rem);
+  line-height: 1.02;
+}
+
+/* social buttons reduced */
+.fullCardSocialBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* Move stickers closer to the card edges without changing the inline positioning */
+.staticSticker {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  pointer-events: none;
+  transition: transform .32s cubic-bezier(.2,.9,.2,1), opacity .28s;
+  z-index: 6;
+  will-change: transform, opacity;
+
+  /* stronger overlap: pull stickers inward toward the card edge */
+  /* negative margin pulls them outside; smaller (more negative) value increases overlap */
+  margin: -22px;
+  /* small inward nudge so stickers appear closer to the card border */
+  transform: translate(6px, 6px);
+}
+
+/* Slightly larger overlap on desktop */
+@media (min-width: 900px) {
+  .staticSticker {
+    margin: -28px;
+    transform: translate(8px, 8px);
+  }
+}
+
+/* corner-specific override (use data-corner="true" on the JSX element for stronger overlap) */
+.staticSticker[data-corner="true"] {
+  margin: -30px;
+  width: 56px;
+  height: 56px;
+  transform: translate(10px, 10px);
+}
+
+/* Ensure sticker images render sharply and appear above the card */
+.staticSticker,
+.cardSticker,
+.sticker {
+  /* use the natural image size to avoid blur from CSS scaling */
+  width: 64px !important;
+  height: 64px !important;
+
+  /* bring to front */
+  z-index: 9999 !important;
+
+  /* promote to its own composite layer for smoother, non-blurry transforms */
+  transform: translateZ(0) !important;
+  -webkit-transform: translateZ(0) !important;
+  will-change: transform, opacity !important;
+  backface-visibility: hidden !important;
+  pointer-events: none;
+}
+
+/* If stickers are rendered with <img> inside, ensure the image itself fits exactly */
+.staticSticker img,
+.cardSticker img,
+.sticker img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: auto;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* Slightly smaller size on very small screens while preserving pixel ratio */
+@media (max-width: 420px) {
+  .staticSticker,
+  .cardSticker,
+  .sticker {
+    width: 56px !important;
+    height: 56px !important;
+  }
+}
+
+/* pop card + child stickers together on hover/focus */
+.relativeCardWrap {
+  /* ensure transforms on children use this as the anchor */
+  transform-origin: center top;
+}
+
+/* card image — remove grayscale and slightly scale when wrapper is hovered/focused */
+.relativeCardWrap:hover .fullCardImg,
+.relativeCardWrap:focus-within .fullCardImg {
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(1.04) saturate(1.06);
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), filter 260ms;
+}
+
+/* static stickers scale and nudge outward a bit on wrapper hover/focus */
+.relativeCardWrap:hover .staticSticker,
+.relativeCardWrap:focus-within .staticSticker {
+  transform: translateY(-6px) scale(1.08) !important;
+  opacity: 1 !important;
+  filter: none !important;
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), opacity 220ms;
+  z-index: 30;
+}
+
+/* also nudge sticker-behind slightly but keep it behind the image */
+.relativeCardWrap:hover .staticSticker.stickerBehind,
+.relativeCardWrap:focus-within .staticSticker.stickerBehind {
+  transform: translateY(-4px) scale(1.04) !important;
+  opacity: 0.95 !important;
+}
+
+/* keep the card a little elevated when active */
+.relativeCardWrap:hover .fullImageCard,
+.relativeCardWrap:focus-within .fullImageCard {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 28px 80px rgba(7,8,10,0.42);
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms;
+}
+
+/* small-screen tweak: reduce the scale so layout stays stable */
+@media (max-width: 720px) {
+  .relativeCardWrap:hover .fullCardImg,
+  .relativeCardWrap:focus-within .fullCardImg {
+    transform: scale(1.03);
+  }
+  .relativeCardWrap:hover .staticSticker,
+  .relativeCardWrap:focus-within .staticSticker {
+    transform: translateY(-4px) scale(1.06) !important;
+  }
+}
+
+/* ensure mission/intro text always sits above floating stickers */
+.missionSection {
+  position: relative;
+  /* lowered so mobile nav/drawers can appear above the mission text */
+  z-index: 100;
+}
+
+/* floating (fixed) popup stickers should sit above page but below mission text */
+.sticker {
+  z-index: 1000 !important; /* lower than .missionSection (10005) but high enough to sit above other content */
+  pointer-events: none;
+}
+
+/* keep on-card/static stickers above the card */
+.staticSticker,
+.cardSticker {
+  z-index: 11000; /* remains above the card surface */
+}
