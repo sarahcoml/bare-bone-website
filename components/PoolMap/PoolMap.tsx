@@ -166,22 +166,18 @@ const PoolMap: React.FC = () => {
       /* ignore and continue */
     }
 
-    // 3) MapTiler (optional) - try only if key present
+    // 3) Optional server-side MapTiler proxy
+    // Use the server endpoint `/api/geocode` which keeps the MapTiler key on the server.
     try {
-      const MAPTILER_KEY = process.env.NEXT_PUBLIC_MAPTILER_KEY;
-      if (MAPTILER_KEY) {
-        const mres = await fetch(
-          `https://api.maptiler.com/geocoding/${lon},${lat}.json?key=${MAPTILER_KEY}&limit=6`
-        );
-        if (mres.ok) {
-          const md = await mres.json();
-          if (md.features && md.features.length) {
-            const facility = md.features.find((f: any) =>
-              (f.properties?.category || "").toLowerCase().includes("swimming")
-            );
-            const textFeature = facility || md.features.find((f: any) => KEYWORD_RE.test(f.text || ""));
-            if (textFeature) return (textFeature.text || textFeature.properties?.label || "").trim() || null;
-          }
+      const gres = await fetch(`/api/geocode?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`);
+      if (gres.ok) {
+        const md = await gres.json();
+        if (md.features && md.features.length) {
+          const facility = md.features.find((f: any) =>
+            (f.properties?.category || "").toLowerCase().includes("swimming")
+          );
+          const textFeature = facility || md.features.find((f: any) => KEYWORD_RE.test(f.text || ""));
+          if (textFeature) return (textFeature.text || textFeature.properties?.label || "").trim() || null;
         }
       }
     } catch {
@@ -455,7 +451,7 @@ const PoolMap: React.FC = () => {
                 const [main, ...rest] = s.display_name.split(",");
                 return (
                   <li
-                    key={s.place_id}
+                    key={`${s.place_id}-${idx}`}
                     className={idx === highlightedIndex ? styles.suggestionActive : ""}
                     onMouseDown={() => handleSuggestionClick(s)}
                     onMouseEnter={() => setHighlightedIndex(idx)}
