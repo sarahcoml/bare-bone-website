@@ -1,0 +1,56 @@
+/* Mobile-first responsive carousel styles - simplified */
+
+/* Mobile-first: hide carousel on small screens */
+.carouselWrapper {
+  display: none;
+}
+
+/* Show carousel and full styling on larger screens */
+@media (min-width: 720px) {
+  .carouselWrapper {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2rem 0;
+    background: transparent;
+    min-height: 420px;
+  }
+
+  .carouselInner {
+    padding: 0 24px;
+  }
+
+  .splide__list {
+    display: flex;
+    gap: 24px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .splide__slide {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+  }
+
+  .splideSlideImg {
+    width: 100%;
+    max-width: 1100px;
+    aspect-ratio: 4 / 3;
+    min-height: 420px;
+    object-fit: cover;
+    border-radius: 14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    background: #efefef;
+    display: block;
+  }
+}
+
+/* Accessibility: keep focus outlines for interactive slides */
+.splide__slide:focus-within,
+.splide__slide:focus {
+  outline: 3px solid rgba(43,110,246,0.12);
+  outline-offset: 4px;
+}

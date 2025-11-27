@@ -1,0 +1,67 @@
+/* horizontal icon row */
+.list {
+  display: flex;
+  flex-direction: row;    /* horizontal */
+  gap: 18px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  align-items: center;
+  justify-content: flex-start; /* change to center if you want centered icons */
+}
+
+/* icon button */
+.iconLink {
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.04);
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform .12s ease, background .12s ease, box-shadow .12s ease;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 6px 18px rgba(2,6,23,0.06);
+}
+
+/* SVG sizing */
+.iconLink svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* hover / focus */
+.iconLink:hover,
+.iconLink:focus {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 12px 28px rgba(2,6,23,0.12);
+  outline: none;
+}
+
+/* active */
+.iconLink:active {
+  transform: translateY(-2px);
+}
+
+/* responsive: keep horizontal but tighter on small screens */
+@media (max-width: 640px) {
+  .list {
+    gap: 12px;
+    justify-content: center;
+  }
+  .iconLink {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  .iconLink svg {
+    width: 20px;
+    height: 20px;
+  }
+}

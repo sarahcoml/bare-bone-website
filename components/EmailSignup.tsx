@@ -1,57 +1,15 @@
-"use client";
+'use client'
+import {useState} from 'react'
 
-import styles from "./EmailSignup.module.css";
-import { useState } from "react";
-
-export default function EmailSignup() {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      const response = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (response.ok) {
-        setSubmitted(true);
-        setEmail("");
-        setTimeout(() => setSubmitted(false), 3000);
-      }
-    } catch (error) {
-      console.error("Error subscribing:", error);
-    }
-  };
-
+export default function EmailSignup(){
+  const [email, setEmail] = useState('')
   return (
-    <section className={styles.signup}>
-      <div className={styles.container}>
-        <h2>Subscribe to Our Newsletter</h2>
-        <p>Get the latest updates delivered to your inbox</p>
-        
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            type="email"
-            placeholder="your@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className={styles.input}
-          />
-          <button type="submit" className={styles.button}>
-            Subscribe
-          </button>
-        </form>
-
-        {submitted && (
-          <p className={styles.success}>Thanks for subscribing!</p>
-        )}
-      </div>
-    </section>
-  );
+    <form onSubmit={(e)=>{e.preventDefault(); alert(`Thanks, ${email}`)}} style={{marginTop: '1rem'}}>
+      <label>
+        <span style={{display:'block'}}>Join our mailing list</span>
+        <input type="email" value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" style={{padding:'.5rem', marginRight:'.5rem'}} />
+      </label>
+      <button type="submit" style={{padding:'.5rem 1rem'}}>Sign up</button>
+    </form>
+  )
 }

@@ -1,0 +1,210 @@
+.trigger {
+  background: transparent;
+  border: none;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 4px 6px;
+}
+
+/* Footer variant: fit with footer link styles (inline, same spacing, muted pale yellow) */
+.triggerFooter {
+  background: transparent;
+  border: none;
+  color: #f6f38e; /* match footer yellow */
+  text-decoration: none; /* footer links are not underlined in design */
+  font-weight: 700;
+  padding: 0;
+  margin-right: 28px; /* match spacing used by footer links */
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition: opacity .12s ease, transform .12s ease;
+}
+
+/* subtle hover to match other footer interactions */
+.triggerFooter:hover,
+.triggerFooter:focus {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  outline: none;
+}
+
+/* If your footer has a specific link color variable, prefer that:
+   color: var(--footer-link, #f2f4a6);
+*/
+
+/* backdrop */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .22s ease;
+  z-index: 11000; /* was 9998 */
+}
+.backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* bottom sheet */
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: -100%;
+  background: #0b0f14;
+  color: #e6eef0;
+  border-top-left-radius: 14px;
+  border-top-right-radius: 14px;
+  box-shadow: 0 -12px 40px rgba(2,6,23,0.6);
+  transform: translateY(0);
+  transition: bottom .28s cubic-bezier(.22,.9,.32,1), transform .28s cubic-bezier(.22,.9,.32,1);
+  z-index: 11010; /* was 9999 */
+  max-height: 84vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 18px;
+}
+
+/* shown */
+.sheet.open {
+  bottom: 0;
+}
+
+/* header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* body */
+.body {
+  padding: 12px 0;
+  overflow: auto;
+  flex: 1 1 auto;
+}
+.lead {
+  margin: 0 0 12px 0;
+  color: #cbd6db;
+}
+
+/* rows */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+.row:first-of-type { border-top: 0; }
+.rowTitle {
+  font-weight: 700;
+}
+.rowDesc {
+  font-size: 0.92rem;
+  color: #98a6ad;
+  margin-top: 4px;
+}
+
+/* static "On" badge */
+.switchStatic {
+  background: rgba(255,255,255,0.06);
+  color: #e6eef0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* toggle switch */
+.switch {
+  display: inline-block;
+  width: 54px;
+  height: 30px;
+  position: relative;
+}
+.switch input {
+  display: none;
+}
+.switch span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.08);
+  border-radius: 999px;
+  position: relative;
+  transition: background .18s ease;
+}
+.switch span::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 22px;
+  height: 22px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform .18s ease;
+  box-shadow: 0 4px 10px rgba(2,6,23,0.16);
+}
+.switch input:checked + span {
+  background: #0033f1;
+}
+.switch input:checked + span::after {
+  transform: translateX(24px);
+}
+
+/* footer actions */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.03);
+}
+.actionsLeft { display:flex; gap:8px; }
+.ghost {
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  border: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.save {
+  background: #00a1ff;
+  color: #07101a;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+/* responsive */
+@media (min-width: 900px) {
+  .sheet { left: 20%; right: 20%; border-radius: 12px 12px 0 0; }
+}
