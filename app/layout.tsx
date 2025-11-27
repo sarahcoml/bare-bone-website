@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-export default function RootLayout({ children }: { children: React.ReactNode }) {
   const [pathname, setPathname] = useState<string>("");
   useEffect(() => {
     setPathname(typeof window !== "undefined" ? window.location.pathname : "");
